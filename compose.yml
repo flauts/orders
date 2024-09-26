@@ -5,9 +5,9 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./:/apis/order:ro
+      - ./:/apis/order
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/order
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/order
     ports:
       - 8000:8000
     healthcheck:
