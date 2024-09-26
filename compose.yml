@@ -6,7 +6,7 @@ services:
     volumes:
       - ./:/apis/order:ro
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@localhost:5433/order
+      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/order
     ports:
       - 8000:8000
   db:
@@ -18,6 +18,6 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=api-order
+      - POSTGRES_DB=order
 volumes:
   postgres_data:
