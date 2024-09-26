@@ -6,15 +6,15 @@ services:
     volumes:
       - ./:/apis/order:ro
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/order
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/order
     ports:
       - 8000:8000
   db:
     image: postgres:15-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    expose:
-      - 5433
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
