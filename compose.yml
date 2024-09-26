@@ -2,13 +2,19 @@ services:
   api-order:
     image: flts123/api-order
     depends_on:
-      - db
+      - db:
+          condition: service-healthy
     volumes:
       - ./:/apis/order:ro
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/order
     ports:
       - 8000:8000
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   db:
     image: postgres:15-alpine
     volumes:
