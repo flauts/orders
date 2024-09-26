@@ -1,0 +1,5 @@
+services:
+  api-order:
+    image: flts123/api-order
+    ports:
+      - 8000:8000
