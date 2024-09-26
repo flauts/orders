@@ -1,5 +1,23 @@
 services:
   api-order:
     image: flts123/api-order
+    depends_on:
+      - db
+    volumes:
+      - ./:/apis/order:ro
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@localhost:5433/order
     ports:
       - 8000:8000
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - 5433
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=api-order
+volumes:
+  postgres_data:
